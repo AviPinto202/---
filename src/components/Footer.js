@@ -1,0 +1,9 @@
+const Footer = () => {
+    return (
+        <div className="container_footer">
+            <div id="logo">Plan My Day</div>
+        </div>
+    );
+}
+
+export default Footer;
