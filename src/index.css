@@ -158,7 +158,6 @@ a{
 #startBtn:hover{
   padding: 18px 22px 18px 22px;
   font-size: 20px;
-  
 }
 
 
@@ -189,11 +188,70 @@ a{
 }
 
 
+
+/* Contact Us */
+
+.container_contactUs{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container_contactUs h1{
+  font-weight: 300;
+  font-size: 40px;
+}
+
+.contactUs_content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  height: auto;
+  background-color: #ECB390;
+  color: white;
+  border-radius: 10px;
+}
+
+.container_contactUs h2{
+  font-weight: 300;
+}
+
+.contactUs_form{
+  display: contents;
+}
+
+.contactUs_form input{
+  width: 40%;
+  padding: 12px 20px;
+  margin: 12px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+#contactus_ta{
+  padding: 12px 20px;
+  margin: 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: none;
+}
+
+#contactus_btn{
+  margin: 12px 0;
+ background-color:#2ECC71 ;
+}
+
+
 /* Footer */
 
 .container_footer{
   background-color: rgb(214, 214, 214);
-  height: 150px;
+  height: auto;
   width: 100%;
   margin: 30px 0px 0px 0px;
 }
@@ -315,24 +373,66 @@ a{
 #addEventBtn{
   margin: 30px 20px 20px 20px;
   font-size: 16px;
-  background-color: #17c01d;
+  background-color: #2ECC71;
 }
 
 #modal_box{
+  display: flex;
+  flex-direction: column;
   position: absolute;
+  align-items: center;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 300px;
+  height: 400px;
   width: 500px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0px 0px 15px 2px rgb(0 0 0 / 20%);
+}
+
+.modal_header{
+  width: 100%;
+  background-color: #a8dadc;
   display: flex;
+  flex-direction: row-reverse;
   justify-content: center;
+  margin-bottom: 10px;
+}
+
+.modal_header p{
+  font-size: 20px;
+}
+
+#closeIcon{
+  position: relative;
+  left: 24%;
+  cursor: pointer;
+}
+
+#closeIcon:hover{
+  background-color: rgba(158, 158, 158, 0.3)
+}
+
+.modal_content{
+  display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
 }
 
 #addEventInput{
-
+  width: 100%;
+  padding: 12px 20px;
+  margin: 10px 20px 10px 0px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
 }
+
+#addBtnInModal{
+  margin: 12px 20px 20px 20px;
+  font-size: 16px;
+  background-color: #2ECC71;
+}
+
