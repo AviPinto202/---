@@ -5,13 +5,14 @@ import bgImg from "../images/laptop_img2.jpg";
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
+import ContactUs from '../components/ContactUs';
 
 const Home = () => {
 
     const { user } = UserAuth();
 
     useEffect(() => {
-        console.log(user.uid)
+        //console.log(user.uid)
         return () => {
         };
     }, []);
@@ -25,10 +26,10 @@ const Home = () => {
                     <p>The tool that will help you organize your schedule for the coming days.</p>
                     {!user ? <Link style={{ display: 'contents' }} to="/signin"><Button id="startBtn">Start Now</Button></Link> :
                         <Link style={{ display: 'contents' }} to={`/myplans/${user.uid}`}><Button id="startBtn">Start Now</Button></Link>}
-
                 </div>
             </div>
             <About />
+            <ContactUs />
             <Footer />
         </div >
     );

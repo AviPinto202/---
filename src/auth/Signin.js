@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from '../context/AuthContext';
+import { getDatabase, ref, set } from "firebase/database";
 
 
 const Signin = () => {
@@ -27,14 +28,24 @@ const Signin = () => {
 
     const handlerGoogleSignIn = async () => {
         try {
-            await googleSignIn();
+            await googleSignIn()
         } catch (error) {
             console.log(error)
         }
     }
 
+    const writeUserData = (userId, fullName, email) => {
+        const db = getDatabase();
+        set(ref(db, 'users/' + userId), {
+            fullName: fullName,
+            email: email,
+        }).then(() => { alert('User successfully created') })
+            .catch((error) => { alert('error' + error) });
+    }
+
     useEffect(() => {
         if (user != null) {
+            writeUserData(user.uid, user.displayName, user.email)
             navigate('/')
         }
         return () => {
