@@ -18,7 +18,7 @@ import {
 const MyPlans = () => {
     const db = getDatabase();
     const { user } = UserAuth();
-    let { id } = useParams();
+    const { id } = useParams();
     let events = [];
 
 
@@ -29,7 +29,6 @@ const MyPlans = () => {
             snapshot.forEach(childSnapshot => {
                 //let keyName = childSnapshot.key;
                 data = childSnapshot.val();
-                //console.log("1", data)
                 events.push({
                     title: data.title, start: new Date(data.startDate), end: new Date(data.endDate)
                 })

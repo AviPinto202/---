@@ -28,12 +28,11 @@ const FormModal = () => {
 
     const handleEvent = (e) => {
         e.preventDefault();
-        //console.log(id)
         set(ref(db, `users/${id}/plans/${title}`), {
             title: title,
             startDate: startDate.toString(),
             endDate: endDate.toString()
-        }).then(() => { alert('plan added !!') }, handleClose(), console.log(startDate.toString(), endDate.toString()))
+        }).then(() => { alert('plan added !!') }, handleClose())
             .catch((e) => { console.log(e) })
     }
 

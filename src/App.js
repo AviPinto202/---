@@ -5,6 +5,7 @@ import Signup from './auth/Signup';
 import Navbar from './components/Navbar';
 import NotFoundPage from './Pages/404';
 import MyPlans from './Pages/MyPlans';
+import Profile from './Pages/Profile';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route exact path='/' element={<Home />} />
           <Route path='/signin' element={<Signin />} />
           <Route path='/signup' element={<Signup />} />
+          <Route path='/profile/:id' element={<Profile />} />
           <Route path='/myplans/:id' element={<MyPlans />} />
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>

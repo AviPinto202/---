@@ -8,6 +8,8 @@ import { getDatabase, ref, set } from "firebase/database";
 
 
 const Signin = () => {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -34,10 +36,21 @@ const Signin = () => {
         }
     }
 
-    const writeUserData = (userId, fullName, email) => {
+    // const splitFullName = (fullName) => {
+    //     const arr = fullName.split(" ")
+    //     let firstName1 = arr[0];
+    //     let lastName1 = arr[1];
+    //     setFirstName('avi') /// not set the strings
+    //     setLastName(lastName1) /// לסדר את זה
+    //     console.log("first name" + arr[0], "last name" + arr[1])
+    //     console.log("first name" + firstName, "last name" + lastName)
+    // }
+
+    const writeUserData = (userId, firstName, lastName, email) => {
         const db = getDatabase();
         set(ref(db, 'users/' + userId), {
-            fullName: fullName,
+            firstName: firstName,
+            lastName: lastName,
             email: email,
         }).then(() => { alert('User successfully created') })
             .catch((error) => { alert('error' + error) });
@@ -45,7 +58,10 @@ const Signin = () => {
 
     useEffect(() => {
         if (user != null) {
-            writeUserData(user.uid, user.displayName, user.email)
+            const arr = user.displayName.split(" ")
+            //setFirstName(arr[0])
+            //setLastName(arr[1])
+            writeUserData(user.uid, arr[0], arr[1], user.email)
             navigate('/')
         }
         return () => {

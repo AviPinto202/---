@@ -13,7 +13,6 @@ const firebaseConfig = {
     appId: "1:730957406560:web:46fc908284f3b0427cbe05",
     measurementId: "G-V4DWQKMPL3",
     databaseURL: "https://planmyday-57327-default-rtdb.europe-west1.firebasedatabase.app/"
-
 };
 
 // Initialize Firebase
