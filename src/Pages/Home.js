@@ -11,12 +11,6 @@ const Home = () => {
 
     const { user } = UserAuth();
 
-    useEffect(() => {
-        //console.log(user.uid)
-        return () => {
-        };
-    }, []);
-
     return (
         <div className="container">
             <div className="foreword">
