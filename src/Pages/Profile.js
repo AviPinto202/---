@@ -1,6 +1,6 @@
 import { UserAuth } from '../context/AuthContext';
 import { getDatabase, ref, get, child, set, update } from "firebase/database";
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import EditInput from '../components/EditInput';
 
 
@@ -41,7 +41,7 @@ const Profile = () => {
 
     useEffect(() => {
         getUser()
-    }, []);
+    }, [user]);
 
     return (
         <div className='profile_container'>

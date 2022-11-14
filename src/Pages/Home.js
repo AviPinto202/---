@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import About from "../components/About";
 import { Button } from "@mui/material";
 import bgImg from "../images/laptop_img2.jpg";
@@ -10,12 +9,6 @@ import ContactUs from '../components/ContactUs';
 const Home = () => {
 
     const { user } = UserAuth();
-
-    useEffect(() => {
-        //console.log(user.uid)
-        return () => {
-        };
-    }, []);
 
     return (
         <div className="container">

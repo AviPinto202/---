@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import format from "date-fns/format";
 import parse from "date-fns/parse";
@@ -10,39 +10,66 @@ import FormModal from "../components/FormModal";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { UserAuth } from '../context/AuthContext';
 import {
-    Link,
     useParams
 } from "react-router-dom";
+import { useCallback } from "react";
 
 
 const MyPlans = () => {
     const db = getDatabase();
     const { user } = UserAuth();
     const { id } = useParams();
-    let events = [];
+    const [events, setEvents] = useState([{}]);
+    //console.log("events in top", events)
 
 
-    const handleEvents = () => {
+    // const handleEvents = () => {
+    //     const dbRef = ref(db, `users/${id}/plans`);
+    //     let data;
+    //     onValue(dbRef, (snapshot) => {
+    //         snapshot.forEach(childSnapshot => {
+    //             //let keyName = childSnapshot.key;
+    //             data = childSnapshot.val();
+    //             events.push({
+    //                 title: data.title, start: new Date(data.startDate), end: new Date(data.endDate)
+    //             })
+    //         })
+    //     })
+    // }
+
+
+
+    // const dbRef = ref(db);
+    // get(child(dbRef, `users/${id}/plans`)).then((snapshot) => {
+    //     if (snapshot.exists()) {
+    //         events = Object.values(snapshot.val());
+    //     }
+    // })
+
+    const handleEvents = useCallback(() => {
         const dbRef = ref(db, `users/${id}/plans`);
-        let data;
         onValue(dbRef, (snapshot) => {
             snapshot.forEach(childSnapshot => {
                 //let keyName = childSnapshot.key;
-                data = childSnapshot.val();
-                events.push({
+                const data = childSnapshot.val();
+                const event = {
                     title: data.title, start: new Date(data.startDate), end: new Date(data.endDate)
-                })
-                console.log("2", events)
+                }
+                if (data !== null) {
+                    setEvents(oldArr => [...oldArr, event])
+                }
             })
         })
-    }
+    }, [db, id])
+
 
 
     useEffect(() => {
+        console.log("run only once")
         if (user != null) {
-            handleEvents()
+            handleEvents();
         }
-    }, [user, events]);
+    }, [handleEvents]);
 
     const locales = {
         "en-GB": require("date-fns/locale/en-GB")
@@ -67,8 +94,7 @@ const MyPlans = () => {
                     events={events}
                     startAccessor="start"
                     endAccessor="end"
-                    defaultView='month'
-                    selectable
+                    defaultView="month"
                     style={{ height: 500, margin: "10px 50px 50px 50px", fontFamily: "Roboto" }}
                 />}
             <Footer />

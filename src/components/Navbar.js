@@ -52,7 +52,7 @@ const Navbar = () => {
         if (user != null) {
             readUserData(user.uid)
         }
-    }, [user]);
+    });
 
     return (
         <div className="container">

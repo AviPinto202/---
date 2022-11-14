@@ -6,9 +6,9 @@ import { AuthContextProvider } from './context/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <AuthContextProvider childern={<App />}>
-      <App />
-    </AuthContextProvider>
-  </React.StrictMode>
+  // <React.StrictMode> // רץ פעמיים ולכן מופיעים האירועים מופיעים כפול
+  <AuthContextProvider childern={<App />}>
+    <App />
+  </AuthContextProvider>
+  // </React.StrictMode>
 );
