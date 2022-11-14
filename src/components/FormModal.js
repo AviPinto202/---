@@ -7,10 +7,10 @@ import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { getDatabase, ref, set } from "firebase/database";
 import {
-    Link,
     useParams
 } from "react-router-dom";
 import GB from 'date-fns/locale/en-GB';
+import Alert from './Alert';
 registerLocale("en-GB", GB)
 
 
@@ -19,6 +19,7 @@ const FormModal = () => {
     const [title, setTitle] = useState("");
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
+    const [openAlert, setOpenAlert] = useState(true);
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -26,15 +27,21 @@ const FormModal = () => {
     const db = getDatabase();
     let { id } = useParams();
 
+    let eventId = Math.random().toString(16).slice(8);
+
     const handleEvent = (e) => {
         e.preventDefault();
         set(ref(db, `users/${id}/plans/${title}`), {
+            id: eventId,
             title: title,
             startDate: startDate.toString(),
             endDate: endDate.toString()
-        }).then(() => { alert('plan added !!') }, handleClose())
+        }).then(() => {
+            <Alert open={openAlert} />
+        }, handleClose())
             .catch((e) => { console.log(e) })
     }
+
 
     return (
         <div className="Modal_container">

@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import About from "../components/About";
 import { Button } from "@mui/material";
 import bgImg from "../images/laptop_img2.jpg";
